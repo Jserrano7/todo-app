@@ -30,43 +30,22 @@ export class TodoRegistroComponent implements OnInit {
     })
 
   }
-  onSubmit(): void {
-    console.log(this.registro.value);
-    this._todoService.register(this.registro.value).subscribe({
-      next: (response) => {
-        if(response.data){
-          this.status = "SUCCESS";
-          this.registro.reset();
-        }else {
-          this.status = "ERROR";
-        }
-      },
-      error: (e) => console.error(e)
-    });
+  async onSubmit(){
+    await this._todoService.register(this.registro.value);
+    this.status = "SUCCESS";
+    this.registro.reset();
   }
 
-  onEdit(id: any): void {
-    this._todoService.update(id, this.registro.value).subscribe({
-      next: (response) => {
-        console.log(response.data);
-        if(response.data){
-          this.registro.reset();
-          this._router.navigate(['/']);
-        }else {
-          this.status = "ERROR";
-        }
-      },
-      error: (e) => console.error(e)
-    });
+  async onEdit(id: any){
+    await this._todoService.update(id, this.registro.value);
+    this.registro.reset();
+    this._router.navigate(['/']);
   }
 
-  getTodoId(id: any){
-    this._todoService.getTodoId(id).subscribe({
-      next: (res) => {
-        this.todos = res.data;
-        this.registro.controls['task'].setValue(this.todos.task);
-      }
-    })
+  async getTodoId(id: any){
+    const res = await this._todoService.getTodoId(id);
+    this.todos = res;
+    this.registro.controls['task'].setValue(this.todos.data.task);
   }
 
   ngOnInit(): void {

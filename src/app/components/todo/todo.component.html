@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let todo of todos">
+      <tr *ngFor="let todo of todos.data">
         <td class="border border-slate-700">{{ todo.task }}</td>
         <td class="border border-slate-700">
           <button class="w-1/3 h-[35px] text-[10pt] border bg-red-500 hover:bg-red-700 rounded" (click)="deleteTodo(todo.id)">Eliminar</button>

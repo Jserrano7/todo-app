@@ -17,22 +17,16 @@ export class TodoComponent implements OnInit {
     this.titlePage = 'Listado de Tareas';
   }
 
-  getTodo() {
-    this._todoService.getTodo().subscribe({
-      next: (response) => {
-        this.todos = response.data;
-      },
-      error: (e) => console.error(e)
-    });
+  async getTodo() {
+    const res = await this._todoService.getTodo();
+    this.todos = res;
   }
 
-  deleteTodo(id: any) { 
-    this._todoService.delete(id).subscribe({
-      next: (res) => {
-        console.log('Borrado con exito');
-        this.getTodo();
-      }
-    });
+  async deleteTodo(id: any) {
+    const res =  await this._todoService.delete(id);
+    if(res){
+      this.getTodo();
+    }
   }
 
   ngOnInit(): void {
