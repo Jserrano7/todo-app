@@ -1,3 +1,3 @@
 export const global = {
-  url: 'http://apitodo.dv/api/'
+  url: 'https://jserranoweb.net/asdsad/api/'
 }
