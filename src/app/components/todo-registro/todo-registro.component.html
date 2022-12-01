@@ -1,0 +1,16 @@
+<h1 class="w-full text-[40pt] text-teal-700"> {{ titlePage }} </h1>
+<div class="w-full text-teal-600 text-[20pt]" *ngIf="status === 'SUCCESS'">
+  La tarea se ha registrado correctamente
+</div>
+<div class="w-full text-red-600 text-[20pt]" *ngIf="status === 'ERROR'">
+  La tarea no se ha registrado correctamente
+</div>
+<form class="w-full" [formGroup]="registro" (ngSubmit)="edit ? onEdit(id) :onSubmit()">
+  <div class="w-full">
+    <label for="task" class="text-[20pt]">Tarea</label>
+    <input type="text" formControlName="task" required class="w-full h-10 border-2 rounded">
+  </div>
+  <div class="w-full">
+    <button type="submit" class="w-full text-[15pt] text-white rounded-xl bg-teal-700 mt-5" [disabled]="registro.invalid">{{ edit ? 'Editar' : 'Guardar'}}</button>
+  </div>
+</form>

@@ -1,0 +1,20 @@
+<div class="w-[800px]">
+  <h1 class="text-[40pt] text-red-700 text-center">{{ titlePage }}</h1>
+  <table class="w-full text-center table-auto border border-collapse border-slate-200">
+    <thead>
+      <tr class="text-[20px]">
+        <th class="border border-slate-600">Tarea</th>
+        <th class="border border-slate-600">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos">
+        <td class="border border-slate-700">{{ todo.task }}</td>
+        <td class="border border-slate-700">
+          <button class="w-1/3 h-[35px] text-[10pt] border bg-red-500 hover:bg-red-700 rounded" (click)="deleteTodo(todo.id)">Eliminar</button>
+          <button class="w-1/3 h-[35px] text-[10pt] border bg-teal-500 hover:bg-teal-700 rounded" [routerLink]="['/form/'+todo.id]" >Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
